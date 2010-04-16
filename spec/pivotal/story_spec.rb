@@ -16,9 +16,10 @@ describe Pivotal::Story do
     @story.resource.url.should == "https://www.pivotaltracker.com/services/v3/projects/1/stories/1"
   end
   
+  to_s = lambda {|s| s.to_s}
   [:id, :story_type, :url, :estimate, :current_state,
      :description, :name, :requested_by, :owned_by,
-     :created_at, :accepted_at, :labels].map(&:to_s).each do |method|
+     :created_at, :accepted_at, :labels].map(&to_s).each do |method|
     it "should have an accessor method for #{method}" do
       @story.methods.should include(method)
     end
